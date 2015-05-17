@@ -33,6 +33,7 @@ function print_sum_recursive($path)
 	global $g_hash_algo;
 
 	$entries = array_merge(glob("$path/*"), glob("$path/.*"));
+	$entries = array_map('normalizer_normalize', $entries);
 	sort($entries);
 	foreach ($entries as $entry) {
 		if (is_ignore($entry)) {
