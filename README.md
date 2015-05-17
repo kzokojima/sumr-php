@@ -50,6 +50,11 @@ $ sh test.sh
 
 ## Changes
 
+### v0.2.0 - 2015-05-17
+
+* Change Unicode normalization of the path to the options
+* Change the output order
+
 ### v0.1.0 - 2015-05-17
 
 * Initial release
