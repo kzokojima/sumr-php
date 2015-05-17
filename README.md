@@ -4,7 +4,7 @@ calculate a message-digest fingerprint (checksum) for a file on recursive
 ## Requirement
 
 * PHP 5.3.0 or above
-* PECL intl 1.0.0 or above
+* PECL intl 1.0.0 or above (if exist, path is Unicode-normalized)
 
 ## Installation
 
@@ -39,7 +39,7 @@ PATH TAB SUM (ALGO)
 ```
 
 * sumr ignore special files ('desktop.ini', 'Thumbs.db', '.DS_Store').
-* Path is Unicode-normalized (NFC).
+* If normalizer_normalize function is present, path is Unicode-normalized (NFC).
 
 ## Test
 

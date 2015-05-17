@@ -10,6 +10,10 @@ define('DEFAULT_HASH_ALGO', 'md5');
 
 $g_ignores = array('.', '..', 'desktop.ini', 'Thumbs.db', '.DS_Store');
 $g_hash_algo = DEFAULT_HASH_ALGO;
+$g_path_func = 'strval';
+if (function_exists('normalizer_normalize')) {
+	$g_path_func = 'normalizer_normalize';
+}
 
 $options = getopt('a:');
 if (!empty($options['a'])) {
@@ -31,16 +35,17 @@ print_sum_recursive('.');
 function print_sum_recursive($path)
 {
 	global $g_hash_algo;
+	global $g_path_func;
 
 	$entries = array_merge(glob("$path/*"), glob("$path/.*"));
-	$entries = array_map('normalizer_normalize', $entries);
+	$entries = array_map($g_path_func, $entries);
 	sort($entries);
 	foreach ($entries as $entry) {
 		if (is_ignore($entry)) {
 			continue;
 		}
 		if (is_file($entry)) {
-			printf("%s\t%s\n", normalizer_normalize($entry), hash_file($g_hash_algo, $entry));
+			printf("%s\t%s\n", $g_path_func($entry), hash_file($g_hash_algo, $entry));
 		} elseif (is_dir($entry)) {
 			print_sum_recursive($entry);
 		}
