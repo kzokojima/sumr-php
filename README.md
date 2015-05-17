@@ -5,6 +5,7 @@ calculate a message-digest fingerprint (checksum) for a file on recursive
 
 * PHP 5.3.0 or above
 * PECL intl 1.0.0 or above (if exist, path is Unicode-normalized)
+* File system encoding to assume UTF-8
 
 ## Installation
 
