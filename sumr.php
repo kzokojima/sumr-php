@@ -38,14 +38,15 @@ function print_sum_recursive($path)
 	global $g_path_func;
 
 	$entries = array_merge(glob("$path/*"), glob("$path/.*"));
-	$entries = array_map($g_path_func, $entries);
-	sort($entries);
-	foreach ($entries as $entry) {
+	$keys = array_map($g_path_func, array_map('to_utf8', $entries));
+	$entries = array_combine($keys, $entries);
+	ksort($entries);
+	foreach ($entries as $key => $entry) {
 		if (is_ignore($entry)) {
 			continue;
 		}
 		if (is_file($entry)) {
-			printf("%s\t%s\n", $g_path_func($entry), hash_file($g_hash_algo, $entry));
+			printf("%s\t%s\n", $key, hash_file($g_hash_algo, $entry));
 		} elseif (is_dir($entry)) {
 			print_sum_recursive($entry);
 		}
@@ -57,4 +58,12 @@ function is_ignore($entry)
 	global $g_ignores;
 
 	return in_array(basename($entry), $g_ignores);
+}
+
+function to_utf8($str)
+{
+	if (getenv('OS') === 'Windows_NT') {
+		return mb_convert_encoding($str, 'UTF-8', 'SJIS-win');
+	}
+	return $str;
 }
