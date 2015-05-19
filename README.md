@@ -50,6 +50,11 @@ $ sh test.sh
 
 ## Changes
 
+### v0.3.0 - 2015-05-19
+
+* Fix it if includes '[]' in directory name
+* Add Windows support (for Japanese environment)
+
 ### v0.2.0 - 2015-05-17
 
 * Change Unicode normalization of the path to the options

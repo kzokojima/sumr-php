@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * @license sumr v0.2.0
+ * @license sumr v0.3.0
  * (c) 2015 Kazuo Kojima
  * License: MIT
  */
