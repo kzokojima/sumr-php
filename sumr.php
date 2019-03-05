@@ -22,7 +22,7 @@ if (!empty($options['a'])) {
 		exit('Unknown hashing algorithm: ' . $g_hash_algo);
 	}
 }
-if (count($argv) === 1) {
+if (count($argv) === count($options) + 2) {
 	$path = '.';
 } else {
 	$path = $argv[count($argv) - 1];
