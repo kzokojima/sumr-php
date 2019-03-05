@@ -50,6 +50,11 @@ $ sh test.sh
 
 ## Changes
 
+
+### v0.3.1 - 2019-03-06
+
+* fix
+
 ### v0.3.0 - 2015-05-19
 
 * Fix it if includes '[]' in directory name
